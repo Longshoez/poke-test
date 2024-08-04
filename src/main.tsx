@@ -8,9 +8,12 @@ import './App.css'
 import { Character } from './pages/character.tsx'
 import { Characters } from './pages/characters.tsx'
 
-// import { Provider } from 'react-redux'
+import { Provider } from 'react-redux'
+import { store } from './state/store.ts'
 
 const router = createBrowserRouter([
+
+  //make an intro page with animations, a pokedex and maybe add google auth? 
   {
     path: '/',
     element: <App />,
@@ -23,6 +26,7 @@ const router = createBrowserRouter([
     path: '/characters/:characterId',
     element: <Character />
   }
+
 ])
 
 
@@ -30,6 +34,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </ React.StrictMode >
 )

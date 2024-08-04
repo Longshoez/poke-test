@@ -1,42 +1,138 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.activeLink{
+  color: black
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  width: 85vw;
+  height: 75vh;
+  padding: 2rem;
+  gap: 4rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.sideBar{
+  width: 30%;
+  color: black;
+  display: flex;
+  flex-direction: column;
 }
 
-.card {
-  padding: 2em;
+.imageContainer{
+  height: auto;
+  display: flex;
+  margin-top: 50%;
+  image-rendering: pixelated;
+  justify-content: center;
+  align-items: center;
 }
 
-.read-the-docs {
-  color: #888;
+.noImage{
+  margin: auto;
+  height: 13rem;
+  width: 9rem;
+}
+
+.listContainer{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  overflow: scroll;
+  overflow-x: hidden;
+  list-style-type: none
+}
+
+.listContainer > li{
+  padding: .6rem;
+  margin: .2rem;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: -1px 10px 5px -10px rgba(0,0,0,0.15);
+  color: black;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+}
+
+.listContainer > li:hover{
+  opacity: 0.2;
+}
+
+.listContainer > li:active{
+  opacity: 1;
+  background-color: lightSlateGray;
+}
+
+.button{
+  width: fit-content;
+  padding: .5rem;
+  margin: .25rem;
+  border-radius: 10px;
+  background-color: #FF0000;
+  color: white;
+  text-decoration: none;
+}
+
+.column{
+  width: 100%;
+  display: flex; 
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.table{
+  height: 10%;
+  /* border: 1px solid gray; */
+  border-radius: 5px;
+}
+
+.table thead th{ 
+border-bottom: 1px solid #e7e7e7;
+}
+
+.table *{
+  margin-bottom: .25rem;
+  margin-top: .25rem;
+}
+
+.table-left th{
+  text-align: left;
+  width: 20%;
+}
+
+.table-left td{
+  text-align: left;
+  width: 70%;
+}
+.progressBarContainer{
+  position: relative;
+  background-color: #E3E3E3;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  padding-left: .25rem;
+  padding-right: .25rem;
+}
+
+.progressBar{
+  display: flex;
+  justify-content: right;
+  background-color: #FF0000;
+  color: white;
+  border-radius: 10px;
+  animation-delay: .5s; 
+  transition: .5s ease-in-out;
+}
+
+.progressBar p{
+  padding: 0;
+  line-height: 100%;
+  margin-right: .75rem;
 }

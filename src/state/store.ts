@@ -1,11 +1,12 @@
-// import { combineReducers, configureStore, Store } from '@reduxjs/toolkit'
-//
-// const rootReducer = combineReducers({
-//   counter:  //pokereducer
-// })
-//
-// export const store: Store = configureStore({
-//   reducer: {
-//     pokemons: //pokereducer
-//   }
-// })
+import { configureStore, Store } from '@reduxjs/toolkit'
+import counterReducer from './pokemons/pokeSlice'
+
+export const store: Store = configureStore({
+  reducer: {
+    counter: counterReducer
+  }
+})
+
+//vv ??
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch;
