@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '../state/store'
 import { setPokemonData, setLoading, setPokemonList } from "../state/pokemons/pokeSlice";
 import { Pagination } from "../components/pagination";
+import Pokeball from '../assets/pokeball.png'
 
 interface Pokemon {
   name: string;
@@ -64,24 +65,19 @@ export const Characters = () => {
         <ul className='listContainer'>
           {
             !poke.value.loading ? (
-              pokemonList.slice(((paginationState == 1 ? 0 : 20) * paginationState), (20 * (paginationState + (paginationState == 1 ? 0 : 1)))
-              )
+              pokemonList.slice(paginationState, (paginationState + 20))
                 .map((pokemon: PokeCharacter, key: number) => (
                   <li
                     key={key}
                     onClick={() => getPokemon(pokemon.name)}
                     onDoubleClick={() => navigate(`characters/${pokemon.name}`)}
                   >
-                    {pokemon.name}
+                    {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+                    <img className="pokeIcon" src={Pokeball} />
                   </li>
                 ))) : (<>loading</>)
           }
         </ul>
-        {pokemonList.slice(((paginationState == 1 ? 0 : 20) * paginationState), (20 * (paginationState + (paginationState == 1 ? 0 : 1)))).length}
-        --
-        {paginationState}
-        -
-        {paginationState}
         <Pagination />
       </div>
       <Outlet />

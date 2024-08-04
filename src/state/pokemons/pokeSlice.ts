@@ -11,7 +11,7 @@ const initialState: PokemonState = {
   value: {},
   pokemonList: [],
   loading: true,
-  paginationState: 1,
+  paginationState: 0,
 }
 
 const pokemonSlice = createSlice({

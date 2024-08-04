@@ -8,14 +8,13 @@ export const SideBar = () => {
 
   return (
     <div className='sideBar'>
-      <img src={Logo} />
+      <img className='logo' src={Logo} />
       {
-
         Object.keys(selectedPokemon).length > 0 ?
-          <>
+          <div className='sidebarContainer'>
             <img className='imageContainer' src={selectedPokemon.sprites.front_default} />
             <p>{selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</p>
-          </>
+          </div>
           :
           <img className='imageContainer noImage' src={Whodat} />
       }

@@ -10,23 +10,20 @@ export const Pagination = () => {
   const pages = Math.floor(maxItems / 20)
 
   return (
-    <div>
+    <div className="pagination">
       <button
         className="button"
-        onClick={() => dispatch(setPagination(page - 1))}
-        disabled={page > 1 ? false : true}
+        onClick={() => dispatch(setPagination(page - 20))}
+        disabled={page > 0 ? false : true}
       >
         Previous
       </button>
-      {page}
-      /
-      {pages}
       <button
         className="button"
-        onClick={() => dispatch(setPagination(page + 1))}
-        disabled={page < pages ? false : true}
+        onClick={() => dispatch(setPagination(page + 20))}
+        disabled={page / 20 < pages ? false : true}
       >
-        Previous
+        Next
       </button>
     </div>
   )

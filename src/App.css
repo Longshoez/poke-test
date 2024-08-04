@@ -27,12 +27,14 @@
 
 .imageContainer{
   height: auto;
+  width: 100%;
   display: flex;
-  margin-top: 50%;
+  margin-top: 0%;
   image-rendering: pixelated;
   justify-content: center;
   align-items: center;
 }
+
 
 .noImage{
   margin: auto;
@@ -50,6 +52,8 @@
 }
 
 .listContainer > li{
+  display: flex;
+  justify-content: space-between;
   padding: .6rem;
   margin: .2rem;
   border-radius: 4px;
@@ -71,6 +75,14 @@
   background-color: #E3E3E3;
 }
 
+.pokeIcon{
+  position: relative;
+  bottom:50%;
+  transform: translate(0%, 100%);
+  width: 15px;
+  height: 15px;
+}
+
 .button{
   width: fit-content;
   padding: .5rem;
@@ -80,6 +92,20 @@
   user-select: none;
   color: white;
   text-decoration: none;
+  transition: .2s ease-in-out;
+  cursor: pointer;
+}
+
+.button:hover{
+  opacity: 0.5;
+}
+
+.button:active{
+  opacity: 0.2;
+}
+
+button{
+  border: none;
 }
 
 button[disabled]{
@@ -139,4 +165,76 @@ border-bottom: 1px solid #e7e7e7;
   padding: 0;
   line-height: 100%;
   margin-right: .75rem;
+}
+
+.pagination{
+  display: flex; 
+  justify-content: right;
+}
+
+@media only screen and (max-width: 767px) {
+
+.noImage{
+  height: 5rem;
+  width: 4rem;
+}
+
+.logo{
+  height: 100%;
+  width: 70%;
+}
+
+.sideBar{
+  background-color: white;
+  position: sticky;
+  top: 0;
+  padding-top: 1rem;
+  min-height: 10rem;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.pagination{
+  background-color: white;
+  position: sticky;
+  bottom: 0;
+  padding-bottom: 2rem;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 2
+}
+
+.imageContainer{
+  margin-top: 0%;
+}
+
+
+#root{
+  padding: 0;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 0rem;
+}
+
+.listContainer{
+  padding: 0;
+  margin: 0;
+  height: auto;
+  z-index: 1;
+}
+
+.buttonMobile{
+position: relative;
+z-index: 3;
+}
+
+
 }

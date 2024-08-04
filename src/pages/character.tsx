@@ -24,7 +24,7 @@ export const Character = () => {
     <div className="container">
       <SideBar />
       <div className="column">
-        <NavLink className='button' to='/'>Go back</NavLink>
+        <NavLink className='button buttonMobile' to='/'>Go back</NavLink>
 
         <table className="table">
           <thead>
