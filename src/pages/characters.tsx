@@ -31,14 +31,11 @@ export const Characters = () => {
 
   const dispatch = useDispatch()
 
-  //NOTE: move this to their own files in the utils folder, not quite sure if its good practice, check it out before
-
   useEffect(() => {
     dispatch(setLoading(true))
     fetch(endpoint).then((res) => {
       return res.json()
     }).then((data: PokemonData) => {
-      console.log(data)
       dispatch(setPokemonList(data.results))
       dispatch(setLoading(false))
     })
