@@ -1,17 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface CounterState {
+interface PokemonState {
   value: {};
+  pokemonList: [];
   loading: boolean;
+  paginationState: number;
 }
 
-const initialState: CounterState = {
+const initialState: PokemonState = {
   value: {},
+  pokemonList: [],
   loading: true,
+  paginationState: 1,
 }
 
-const counterSlice = createSlice({
-  name: 'counter',
+const pokemonSlice = createSlice({
+  name: 'pokemon',
   initialState,
   reducers: {
     setPokemonData: (state, action: PayloadAction<string>) => {
@@ -20,8 +24,14 @@ const counterSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
+    setPokemonList: (state, action) => {
+      state.pokemonList = action.payload;
+    },
+    setPagination: (state, action: PayloadAction<number>) => {
+      state.paginationState = action.payload;
+    }
   },
 })
 
-export const { setPokemonData, setLoading } = counterSlice.actions;
-export default counterSlice.reducer
+export const { setPokemonData, setLoading, setPagination, setPokemonList } = pokemonSlice.actions;
+export default pokemonSlice.reducer

@@ -4,7 +4,7 @@ import Logo from '../assets/pokemon_logo.png'
 import Whodat from '../assets/whodat.png'
 
 export const SideBar = () => {
-  const selectedPokemon = useSelector((state: RootState) => state.counter.value)
+  const selectedPokemon = useSelector((state: RootState) => state.pokemon.value)
 
   return (
     <div className='sideBar'>

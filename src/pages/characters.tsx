@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import '../App.css'
 import { SideBar } from "../components/sideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '../state/store'
-import { setPokemonData, setLoading } from "../state/pokemons/pokeSlice";
+import { setPokemonData, setLoading, setPokemonList } from "../state/pokemons/pokeSlice";
+import { Pagination } from "../components/pagination";
 
 interface Pokemon {
   name: string;
@@ -21,22 +22,26 @@ interface PokeCharacter {
 export const Characters = () => {
 
   const endpoint = 'https://pokeapi.co/api/v2/pokemon?limit=150'
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>([])
   const navigate = useNavigate();
 
-  const poke = useSelector((state: RootState) => state.counter.value)
+  const poke = useSelector((state: RootState) => state.pokemon)
+  const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList)
+  const paginationState = useSelector((state: RootState) => state.pokemon.paginationState)
+
   const dispatch = useDispatch()
+
+  //NOTE: move this to their own files in the utils folder, not quite sure if its good practice, check it out before
 
   useEffect(() => {
     dispatch(setLoading(true))
     fetch(endpoint).then((res) => {
       return res.json()
     }).then((data: PokemonData) => {
+      console.log(data)
+      dispatch(setPokemonList(data.results))
       dispatch(setLoading(false))
-      setPokemonList(data.results)
     })
   }, [])
-
 
   const getPokemon = (pokeName: string) => {
     const characterEndpoint = 'https://pokeapi.co/api/v2/pokemon'
@@ -55,20 +60,30 @@ export const Characters = () => {
   return (
     <div className="container">
       <SideBar />
-      <ul className='listContainer'>
-        {
-          !poke.loading ? (
-            pokemonList.slice(0, 20).map((pokemon: PokeCharacter, id) => (
-              <li
-                key={id}
-                onClick={() => getPokemon(pokemon.name)}
-                onDoubleClick={() => navigate(`characters/${pokemon.name}`)}
-              >
-                {pokemon.name}
-              </li>
-            ))) : (<>loading</>)
-        }
-      </ul>
+      <div className="column">
+        <ul className='listContainer'>
+          {
+            !poke.value.loading ? (
+              pokemonList.slice(((paginationState == 1 ? 0 : 20) * paginationState), (20 * (paginationState + (paginationState == 1 ? 0 : 1)))
+              )
+                .map((pokemon: PokeCharacter, key: number) => (
+                  <li
+                    key={key}
+                    onClick={() => getPokemon(pokemon.name)}
+                    onDoubleClick={() => navigate(`characters/${pokemon.name}`)}
+                  >
+                    {pokemon.name}
+                  </li>
+                ))) : (<>loading</>)
+          }
+        </ul>
+        {pokemonList.slice(((paginationState == 1 ? 0 : 20) * paginationState), (20 * (paginationState + (paginationState == 1 ? 0 : 1)))).length}
+        --
+        {paginationState}
+        -
+        {paginationState}
+        <Pagination />
+      </div>
       <Outlet />
     </div>
   )

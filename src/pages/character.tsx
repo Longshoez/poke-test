@@ -18,9 +18,7 @@ const statHead = ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Deffense
 export const Character = () => {
 
   // const params = useParams()
-  const storedPokemon = useSelector((state: RootState) => state.counter.value)
-
-  console.log(storedPokemon)
+  const storedPokemon = useSelector((state: RootState) => state.pokemon.value)
 
   return (
     <div className="container">

@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react"
 
-//NOTE: store this in react state, so that i get the data and only show the image, but as soon as the 
-//user double clicks i print all the data on the character page. throw 
-//since i already have to fetch the data to get the pokemon image
-
 export const useGetPokemonData = (pokemonName: string) => {
 
   const [data, setData] = useState({})
